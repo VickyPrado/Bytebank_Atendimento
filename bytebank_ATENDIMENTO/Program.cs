@@ -58,7 +58,7 @@ amostra.SetValue(7.1, 2);
 amostra.SetValue(10, 3);
 amostra.SetValue(6.9, 4);
 
-TestaMediana(amostra);
+//TestaMediana(amostra);
 
 void TestaMediana(Array array)
 {
@@ -77,4 +77,13 @@ void TestaMediana(Array array)
         (numerosOrdenado[meio] + numerosOrdenado[meio - 1]) / 2;
     Console.WriteLine($"Com base na amostra a mediana é: {mediana}");
         
+}
+
+
+int[] valores = { 10, 58, 36, 47 };
+
+//se colocar i < 5 (passando o valor da quantidade de array) retorna erro de indexação, porque o array só tem 4 posições. Importante sempre usar o Length para evitar esse erro.
+for (int i = 0; i < valores.Length; i++)
+{
+    Console.WriteLine(valores[i]);
 }
