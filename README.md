@@ -5,4 +5,4 @@ Aplicação criada utilizando a linguagem:
 > .NET 6.0
 
 IDE utilizada:
-> Visual Studio
+> Visual Studio Enterprise 2022
