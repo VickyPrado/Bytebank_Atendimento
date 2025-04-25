@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bytebank.Modelos.Conta;
+using System;
 
 Console.WriteLine("Boas Vindas ao ByteBank, Atendimento.");
 
@@ -79,11 +80,21 @@ void TestaMediana(Array array)
         
 }
 
-
-int[] valores = { 10, 58, 36, 47 };
-
-//se colocar i < 5 (passando o valor da quantidade de array) retorna erro de indexação, porque o array só tem 4 posições. Importante sempre usar o Length para evitar esse erro.
-for (int i = 0; i < valores.Length; i++)
+void TestaArrayDeContasCorrentes()
 {
-    Console.WriteLine(valores[i]);
+    ContaCorrente[] listaDeContas = new ContaCorrente[]
+    {
+        new ContaCorrente(874, "5679787-A"),
+        new ContaCorrente(874, "4456668-B"),
+        new ContaCorrente(874, "7781438-C")
+    };
+
+    for(int i = 0; i < listaDeContas.Length; i++)
+    {
+        ContaCorrente contaAtual = listaDeContas[i];
+        Console.WriteLine($"Índice: {i} - Conta: {contaAtual.Conta}");
+    }
+
 }
+
+TestaArrayDeContasCorrentes();
