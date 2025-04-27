@@ -1,4 +1,6 @@
-﻿/*
+﻿//1. Criar uma função que irá calcular a média de uma amostra. Essa amostra será um vetor de doubles que será o parâmetro de entrada do seu método. Criar um método que receba como parâmetro um array de double e retorne a média simples calculada.
+
+/*
 using System;
 
 double MediaDaAmostra(double[] amostra)
