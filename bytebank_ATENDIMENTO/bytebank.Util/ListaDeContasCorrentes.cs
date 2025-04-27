@@ -40,6 +40,39 @@ namespace bytebank_ATENDIMENTO.bytebank.Util
             _itens = novoArray;
         }
 
+        public void Remover(ContaCorrente conta)
+        {
+            int indiceConta = -1;
+            for (int i = 0; i < _proximaPosicao; i++)
+            {
+                ContaCorrente contaAtual = _itens[i];
+                if (contaAtual == conta)
+                {
+                    indiceConta = i;
+                    break;
+                }
+            }
+            for (int i = indiceConta; i < _proximaPosicao - 1; i++)
+            {
+                _itens[i] = _itens[i + 1];
+            }
+            _proximaPosicao--;
+            _itens[_proximaPosicao] = null;
+        }
+
+        public void ExibirLista()
+        {
+            for (int i = 0; i < _itens.Length; i++)
+            {
+                if (_itens[i] != null)
+                {
+                    var conta = _itens[i];
+                    Console.WriteLine($"Indice: [{i}], Conta: {conta.Conta}, Nº da Agência: {conta.Numero_agencia}");
+                }
+            }
+        }
+
+
         //2. Desenvolva um método na classe ListaDeContaCorrente que retorne a conta corrente com o maior saldo da lista.
         public ContaCorrente MaiorSaldo()
         {
