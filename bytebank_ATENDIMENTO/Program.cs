@@ -220,16 +220,54 @@ void CadastrarConta()
     Console.ReadKey();
 }
 
-Generica<int> teste1 = new();
-teste1.MostrarMensagem(10);
+//Generica<int> teste1 = new();
+//teste1.MostrarMensagem(10);
 
-Generica<string> teste2 = new();
-teste2.MostrarMensagem("Olá, Mundo!");
+//Generica<string> teste2 = new();
+//teste2.MostrarMensagem("Olá, Mundo!");
 
-public class Generica<T>
+//public class Generica<T>
+//{
+//    public void MostrarMensagem(T t)
+//    {
+//        Console.WriteLine($"Exibindo: {t}");
+//    }
+//}
+
+List<ContaCorrente> listaDeContas2 = new()
 {
-    public void MostrarMensagem(T t)
-    {
-        Console.WriteLine($"Exibindo: {t}");
-    }
+    new ContaCorrente(874, "5679787-A"),
+    new ContaCorrente(874, "4456668-B"),
+    new ContaCorrente(874, "7781438-C")
+};
+
+List<ContaCorrente> listaDeContas3 = new()
+{
+    new ContaCorrente(874, "5679787-E"),
+    new ContaCorrente(874, "4456668-F"),
+    new ContaCorrente(874, "7781438-G")
+};
+
+listaDeContas2.AddRange(listaDeContas3);
+listaDeContas2.Reverse();
+
+for (int i = 0; i < listaDeContas2.Count; i++)
+{
+    Console.WriteLine($"Indice: [{i}] = Conta [{listaDeContas2[i].Conta}]");
+}
+
+Console.WriteLine("\n\n");
+
+var range = listaDeContas3.GetRange(0, 1);
+for (int i = 0; i < range.Count; i++)
+{
+    Console.WriteLine($"Indice: [{i}] = Conta [{range[i].Conta}]");
+}
+
+Console.WriteLine("\n\n");
+
+listaDeContas3.Clear();
+for (int i = 0; i < listaDeContas3.Count; i++)
+{
+    Console.WriteLine($"Indice: [{i}] = Conta [{range[i].Conta}]");
 }
