@@ -2,6 +2,7 @@
 using bytebank_ATENDIMENTO.bytebank.Util;
 using System;
 using System.Collections;
+using System.Security.AccessControl;
 
 Console.WriteLine("Boas Vindas ao ByteBank, Atendimento.");
 
@@ -116,7 +117,7 @@ List<ContaCorrente> _listaDeContas = new()
     new ContaCorrente(94, "987321-W"){Saldo=60}
 };
 
-AtendimentoCliente();
+//AtendimentoCliente();
 void AtendimentoCliente()
 {
     char opcao = '0';
@@ -217,4 +218,18 @@ void CadastrarConta()
 
     Console.WriteLine("... Conta cadastrada com sucesso! ...");
     Console.ReadKey();
+}
+
+Generica<int> teste1 = new();
+teste1.MostrarMensagem(10);
+
+Generica<string> teste2 = new();
+teste2.MostrarMensagem("Olá, Mundo!");
+
+public class Generica<T>
+{
+    public void MostrarMensagem(T t)
+    {
+        Console.WriteLine($"Exibindo: {t}");
+    }
 }
