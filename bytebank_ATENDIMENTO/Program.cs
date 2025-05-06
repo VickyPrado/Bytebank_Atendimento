@@ -1,4 +1,5 @@
 ﻿using bytebank.Modelos.Conta;
+using bytebank_ATENDIMENTO.bytebank.Exceptions;
 using bytebank_ATENDIMENTO.bytebank.Util;
 using System;
 using System.Collections;
@@ -110,6 +111,60 @@ void TestaArrayDeContasCorrentes()
 //TestaArrayDeContasCorrentes();
 #endregion
 
+#region Exemplos de uso do List
+//Generica<int> teste1 = new();
+//teste1.MostrarMensagem(10);
+
+//Generica<string> teste2 = new();
+//teste2.MostrarMensagem("Olá, Mundo!");
+
+//public class Generica<T>
+//{
+//    public void MostrarMensagem(T t)
+//    {
+//        Console.WriteLine($"Exibindo: {t}");
+//    }
+//}
+
+//List<ContaCorrente> listaDeContas2 = new()
+//{
+//    new ContaCorrente(874, "5679787-A"),
+//    new ContaCorrente(874, "4456668-B"),
+//    new ContaCorrente(874, "7781438-C")
+//};
+
+//List<ContaCorrente> listaDeContas3 = new()
+//{
+//    new ContaCorrente(874, "5679787-E"),
+//    new ContaCorrente(874, "4456668-F"),
+//    new ContaCorrente(874, "7781438-G")
+//};
+
+//listaDeContas2.AddRange(listaDeContas3);
+//listaDeContas2.Reverse();
+
+//for (int i = 0; i < listaDeContas2.Count; i++)
+//{
+//    Console.WriteLine($"Indice: [{i}] = Conta [{listaDeContas2[i].Conta}]");
+//}
+
+//Console.WriteLine("\n\n");
+
+//var range = listaDeContas3.GetRange(0, 1);
+//for (int i = 0; i < range.Count; i++)
+//{
+//    Console.WriteLine($"Indice: [{i}] = Conta [{range[i].Conta}]");
+//}
+
+//Console.WriteLine("\n\n");
+
+//listaDeContas3.Clear();
+//for (int i = 0; i < listaDeContas3.Count; i++)
+//{
+//    Console.WriteLine($"Indice: [{i}] = Conta [{range[i].Conta}]");
+//}
+#endregion
+
 List<ContaCorrente> _listaDeContas = new()
 {
     new ContaCorrente(95, "123456-X"){Saldo=100},
@@ -117,11 +172,13 @@ List<ContaCorrente> _listaDeContas = new()
     new ContaCorrente(94, "987321-W"){Saldo=60}
 };
 
-//AtendimentoCliente();
+AtendimentoCliente();
 void AtendimentoCliente()
 {
-    char opcao = '0';
-    while(opcao != '6')
+    try
+    {
+        char opcao = '0';
+        while(opcao != '6')
     {
         Console.Clear();
         Console.WriteLine("===================================");
@@ -135,7 +192,14 @@ void AtendimentoCliente()
         Console.WriteLine("===================================");
         Console.WriteLine("\n\n");
         Console.Write("Digite a opção desejada: ");
-        opcao = Console.ReadLine()[0];
+        try
+        {
+            opcao = Console.ReadLine()[0];
+        }
+        catch (Exception excecao)
+        {
+            throw new BytebankException(excecao.Message);
+        }    
 
         switch (opcao)
         {
@@ -157,6 +221,12 @@ void AtendimentoCliente()
                 break;
         }
     }
+    }
+    catch (BytebankException excecao)
+    {
+        Console.WriteLine($"{excecao.Message}");
+    }
+
 }
 
 void ListarContas()
@@ -218,56 +288,4 @@ void CadastrarConta()
 
     Console.WriteLine("... Conta cadastrada com sucesso! ...");
     Console.ReadKey();
-}
-
-//Generica<int> teste1 = new();
-//teste1.MostrarMensagem(10);
-
-//Generica<string> teste2 = new();
-//teste2.MostrarMensagem("Olá, Mundo!");
-
-//public class Generica<T>
-//{
-//    public void MostrarMensagem(T t)
-//    {
-//        Console.WriteLine($"Exibindo: {t}");
-//    }
-//}
-
-List<ContaCorrente> listaDeContas2 = new()
-{
-    new ContaCorrente(874, "5679787-A"),
-    new ContaCorrente(874, "4456668-B"),
-    new ContaCorrente(874, "7781438-C")
-};
-
-List<ContaCorrente> listaDeContas3 = new()
-{
-    new ContaCorrente(874, "5679787-E"),
-    new ContaCorrente(874, "4456668-F"),
-    new ContaCorrente(874, "7781438-G")
-};
-
-listaDeContas2.AddRange(listaDeContas3);
-listaDeContas2.Reverse();
-
-for (int i = 0; i < listaDeContas2.Count; i++)
-{
-    Console.WriteLine($"Indice: [{i}] = Conta [{listaDeContas2[i].Conta}]");
-}
-
-Console.WriteLine("\n\n");
-
-var range = listaDeContas3.GetRange(0, 1);
-for (int i = 0; i < range.Count; i++)
-{
-    Console.WriteLine($"Indice: [{i}] = Conta [{range[i].Conta}]");
-}
-
-Console.WriteLine("\n\n");
-
-listaDeContas3.Clear();
-for (int i = 0; i < listaDeContas3.Count; i++)
-{
-    Console.WriteLine($"Indice: [{i}] = Conta [{range[i].Conta}]");
 }
