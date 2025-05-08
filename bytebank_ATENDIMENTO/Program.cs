@@ -209,8 +209,8 @@ void AtendimentoCliente()
                 break;
             case '3': RemoverContas();
                 break;
-            //case '4': OrdenarContas();
-            //    break;
+            case '4': OrdenarContas();
+                break;
             //case '5': PesquisarConta();
             //    break;
             //case '6': Sair();
@@ -227,6 +227,13 @@ void AtendimentoCliente()
         Console.WriteLine($"{excecao.Message}");
     }
 
+}
+
+void OrdenarContas()
+{
+    _listaDeContas.Sort();
+    Console.WriteLine("...Lista de contas ordenadas...");
+    Console.ReadKey();
 }
 
 void RemoverContas()
