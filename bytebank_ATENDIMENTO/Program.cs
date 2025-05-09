@@ -236,7 +236,7 @@ void PesquisarContas()
     Console.WriteLine("===    PESQUISAR CONTAS     ===");
     Console.WriteLine("===============================");
     Console.WriteLine("\n");
-    Console.Write("Deseja pesquisar por (1) NUMERO DA CONTA ou (2)CPF TITULAR ? ");
+    Console.Write("Deseja pesquisar por (1) NúMERO DA CONTA, (2) CPF TITULAR ou (3) NúMERO AGÊNCIA ? ");
     switch (int.Parse(Console.ReadLine()))
     {
         case 1:
@@ -255,12 +255,45 @@ void PesquisarContas()
                 ContaCorrente consultaCpf = ConsultaPorCPFTitular(_cpf);
                 Console.WriteLine(consultaCpf.ToString());
                 Console.ReadKey();
+                break;                
+            }
+        case 3:
+            {
+                Console.Write("Informe o Nº da Agência: ");
+                int _numeroAgencia = int.Parse(Console.ReadLine());
+                var contasPorAgencia = ConsultaPorAgencia(_numeroAgencia);
+                ExibirListaDeContas(contasPorAgencia);
+                Console.ReadKey();
                 break;
             }
         default:
             Console.WriteLine("Opção não implementada.");
             break;
     }
+}
+
+void ExibirListaDeContas(List<ContaCorrente> contasPorAgencia)
+{
+    if(contasPorAgencia == null)
+    {
+        Console.WriteLine("... A consulta não retornou dados ...");
+    }
+    else
+    {
+        foreach(var item in contasPorAgencia)
+        {
+            Console.WriteLine(item.ToString());            
+        }
+    }
+}
+
+List<ContaCorrente> ConsultaPorAgencia(int numeroAgencia)
+{
+    var consulta = (
+            from conta in _listaDeContas
+            where conta.Numero_agencia == numeroAgencia
+            select conta).ToList();
+    return consulta;
 }
 
 ContaCorrente ConsultaPorCPFTitular(string? cpf)
@@ -276,7 +309,7 @@ ContaCorrente ConsultaPorNumeroConta(string? numeroConta)
 void OrdenarContas()
 {
     _listaDeContas.Sort();
-    Console.WriteLine("...Lista de contas ordenadas...");
+    Console.WriteLine("... Lista de contas ordenadas ...");
     Console.ReadKey();
 }
 
@@ -304,7 +337,7 @@ void RemoverContas()
     }
     else
     {
-        Console.WriteLine(" ... Conta para remoção não encontrada ...");
+        Console.WriteLine("... Conta para remoção não encontrada ...");
     }
     Console.ReadKey();
 }
