@@ -301,9 +301,12 @@ ContaCorrente ConsultaPorCPFTitular(string? cpf)
     return _listaDeContas.FirstOrDefault(conta => conta.Titular.Cpf == cpf);
 }
 
+//Desafio 4: Reescrever a consulta ConsultaPorNumeroConta usando a sintaxe de consulta do LINQ
 ContaCorrente ConsultaPorNumeroConta(string? numeroConta)
 {
-    return _listaDeContas.FirstOrDefault(conta => conta.Conta == numeroConta);
+    return (from conta in _listaDeContas
+            where conta.Conta.Equals(numeroConta)
+            select conta).FirstOrDefault();
 }
 
 void OrdenarContas()
