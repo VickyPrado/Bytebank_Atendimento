@@ -79,6 +79,7 @@ namespace bytebank_ATENDIMENTO.bytebank.Atendimento
         private void Sair()
         {
             Console.WriteLine("... Saindo da aplicação ...");
+            Console.WriteLine("Pressione qualquer tecla para sair.");
             Console.ReadKey();            
         }
 
